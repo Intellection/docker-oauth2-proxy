@@ -1,7 +1,7 @@
 # Docker OAuth2 Proxy
 
 This is a small docker image for `oauth2_proxy` which is a reverse proxy
-that provides authentication with Google, Github or other providers.
+that provides authentication with Google, GitHub or other providers.
 
 ## Configuration
 
