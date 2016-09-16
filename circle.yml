@@ -12,3 +12,11 @@ test:
     - docker build --tag=$IMAGE_NAME .
   override:
     - docker run $IMAGE_NAME --version
+
+deployment:
+  tagged:
+    tag: /.*/
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_TAG
+      - docker push $IMAGE_NAME:$CIRCLE_TAG
