@@ -1,0 +1,22 @@
+---
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  environment:
+    IMAGE_NAME: 'zappi/oauth2_proxy'
+  services:
+    - docker
+
+test:
+  pre:
+    - docker build --tag=$IMAGE_NAME .
+  override:
+    - docker run $IMAGE_NAME --version
+
+deployment:
+  tagged:
+    tag: /.*/
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag $IMAGE_NAME $IMAGE_NAME:$CIRCLE_TAG
+      - docker push $IMAGE_NAME:$CIRCLE_TAG
