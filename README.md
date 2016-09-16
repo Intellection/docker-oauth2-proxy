@@ -1,5 +1,7 @@
 # Docker OAuth2 Proxy
 
+[![CircleCI](https://circleci.com/gh/Intellection/docker-oauth2-proxy/tree/master.svg?style=shield)](https://circleci.com/gh/Intellection/docker-oauth2-proxy/tree/master)
+
 This is a small docker image for `oauth2_proxy` which is a reverse proxy
 that provides authentication with Google, GitHub or other providers.
 
