@@ -2,31 +2,27 @@
 
 [![CircleCI](https://circleci.com/gh/Intellection/docker-oauth2-proxy/tree/master.svg?style=shield)](https://circleci.com/gh/Intellection/docker-oauth2-proxy/tree/master)
 
-This is a small docker image for `oauth2_proxy` which is a reverse proxy
-that provides authentication with Google, GitHub or other providers.
+This is a small docker image for `oauth2_proxy` which is a reverse proxy that provides authentication with Google, GitHub or other providers.
 
 ## Configuration
 
-Configure OAuth2 Proxy using config file, command line options, or
-environment variables. See [`bitly/oauth2_proxy` documentation][1] for
-more details.
+Configure OAuth2 Proxy using [config file][2], [command line options][3], or [environment variables][4]. See [`bitly/oauth2_proxy` documentation][1] for more details.
 
 ## Usage
 
-Run without parameters or any configuration:
+Protect an upstream service e.g. `http://someservice:1234` using Google as the provider (default) but limited to `yourdomain.com` email addresses:
 
-    # Will error out because of no configuration
-    $ docker run zappi/oauth2_proxy
-    2016/09/16 10:19:26 main.go:99: Invalid configuration:
-      missing setting: upstream
-      missing setting: cookie-secret
-      missing setting: client-id
-      missing setting: client-secret
-      missing setting for email validation: email-domain or authenticated-emails-file required.
-          use email-domain=* to authorize all email addresses
-
-Check version:
-
-    $ docker run zappi/oauth2_proxy --version
+    $ docker run \
+        -p 4180:4180 \
+        -e OAUTH2_PROXY_CLIENT_ID="SOME_CLIENT_ID" \
+        -e OAUTH2_PROXY_CLIENT_SECRET="SOME_CLIENT_SECRET" \
+        -e OAUTH2_PROXY_COOKIE_SECRET="SOME_COOKIE_SECRET" \
+        zappi/oauth2_proxy:2.1 \
+        -—upstream=http://someservice:1234 \
+        -—http-address=0.0.0.0:4180 \
+        -—email-domain=yourdomain.com
 
 [1]: https://github.com/bitly/oauth2_proxy
+[2]: https://github.com/bitly/oauth2_proxy/tree/v2.1#config-file
+[3]: https://github.com/bitly/oauth2_proxy/tree/v2.1#command-line-options
+[4]: https://github.com/bitly/oauth2_proxy/tree/v2.1#environment-variables
