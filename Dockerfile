@@ -4,7 +4,7 @@ ENV BUILD_PKGS="ca-certificates wget"
 
 ENV OAUTH2_PROXY_VERSION="2.1"
 ENV OAUTH2_PROXY_PKG="oauth2_proxy-${OAUTH2_PROXY_VERSION}.linux-amd64.go1.6" \
-    OAUTH2_PROXY_SHA="7a74b361f9edda0400d02602eacd70596d85b453"
+    OAUTH2_PROXY_SHA="3061e5b04bd14eeb9ec0ad1c9b324ba8d99d50eaadc5f528cdf4d21043828298"
 RUN apk update && \
     apk upgrade && \
     apk add $BUILD_PKGS && \
