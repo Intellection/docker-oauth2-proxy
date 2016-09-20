@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1-2
+
+* Fix 500 Internal Error Internal Error when sending POST to Google
+  APIs.
+
 ## 2.1-1
 
 * Add SHA check of package.
