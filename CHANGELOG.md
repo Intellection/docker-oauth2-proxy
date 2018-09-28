@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2
+
+* Switch to Debian Stretch base image.
+* Upgrade `oauth2_proxy` to v2.2.
+
 ## 2.1-2
 
 * Fix 500 Internal Error Internal Error when sending POST to Google
