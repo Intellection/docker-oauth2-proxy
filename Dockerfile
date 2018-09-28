@@ -16,7 +16,8 @@ RUN mkdir -p /var/tmp/oauth2_proxy && \
     wget --progress=dot:mega https://github.com/bitly/oauth2_proxy/releases/download/v${OAUTH2_PROXY_VERSION}/${OAUTH2_PROXY_PKG}.tar.gz && \
     echo "${OAUTH2_PROXY_SHA} *${OAUTH2_PROXY_PKG}.tar.gz" | sha256sum -c - && \
     tar xvf ${OAUTH2_PROXY_PKG}.tar.gz && \
-    cp /var/tmp/oauth2_proxy/${OAUTH2_PROXY_PKG}/oauth2_proxy /bin/
+    cp /var/tmp/oauth2_proxy/${OAUTH2_PROXY_PKG}/oauth2_proxy /bin/ &&
+    rm -rf /var/tmp/oauth2_proxy
 
 EXPOSE 4180
 
